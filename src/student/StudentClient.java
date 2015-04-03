@@ -7,23 +7,39 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+/**
+ * Class to control the client communication to the server, one StudentClient
+ * object is created for every student that connects
+ * 
+ * @author cse23170
+ *
+ */
 public class StudentClient {
 
-	public static Student student;
-	public static PrintWriter out;
-	public static BufferedReader in;
-	public static BufferedReader stdIn;
-	public static Socket echoSocket;
-	static String hostName;
-	static int portNumber;
+	protected static Student student;
+	protected static PrintWriter out;
+	protected static BufferedReader in;
+	protected static BufferedReader stdIn;
+	protected static Socket echoSocket;
+	protected static String hostName;
+	protected static int portNumber;
 
+	/**
+	 * Constructor to
+	 * 
+	 * @param stnd
+	 *            - The student connecting to the instructors server
+	 */
 	public StudentClient(Student stnd) {
 		student = stnd;
 		StudentClient.hostName = student.getClassIp();
 		StudentClient.portNumber = student.getClassPort();
 	}
 
-	public static void close() {
+	/**
+	 * Close the connection to the server
+	 */
+	protected static void close() {
 		try {
 			echoSocket.close();
 		} catch (IOException e) {
@@ -31,7 +47,10 @@ public class StudentClient {
 		}
 	}
 
-	public void getChoices() {
+	/**
+	 * Get the current choices from the instructor server
+	 */
+	protected void getChoices() {
 		String choices;
 		try {
 			echoSocket = new Socket(hostName, portNumber);
@@ -59,8 +78,11 @@ public class StudentClient {
 
 	}
 
+	/**
+	 * Send the choice to the instructor server
+	 */
 	@SuppressWarnings("resource")
-	public void sendChoice() {
+	protected void sendChoice() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Choice: ");
 		String choice = sc.next();

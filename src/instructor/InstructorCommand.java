@@ -1,11 +1,16 @@
 package instructor;
 
-
 import instructor.Instructor;
 import instructor.InstructorServer;
 
 import java.util.ArrayList;
 
+/**
+ * Class the deals with the commands available to the instructor
+ * 
+ * @author cse23170
+ *
+ */
 public class InstructorCommand {
 	static InstructorServer server;
 	static Instructor instructor;

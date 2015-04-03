@@ -3,6 +3,12 @@ package student;
 import student.Student;
 import student.StudentClient;
 
+/**
+ * Provides the communication between the model and the user interface.
+ * 
+ * @author cse23170
+ *
+ */
 public class StudentCommand {
 
 	private Student student;
@@ -47,7 +53,7 @@ public class StudentCommand {
 	}
 
 	/**
-	 * Associated with the SETUDENT_NUMBER command
+	 * Associated with the STUDENT_NUMBER command
 	 * 
 	 * @param studentNumber
 	 *            - the users student number

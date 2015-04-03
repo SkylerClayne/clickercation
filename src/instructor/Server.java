@@ -6,16 +6,33 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+/**
+ * Handles each client that connects to the server.
+ * 
+ * @author cse23170
+ *
+ */
 public class Server extends Thread {
 
 	Socket socket;
 	Instructor instructor;
 
+	/**
+	 * Constructor for creating the server-client connection
+	 * 
+	 * @param clientSocket
+	 *            - socket of the client
+	 * @param instructor
+	 *            - model of the instructor
+	 */
 	public Server(Socket clientSocket, Instructor instructor) {
 		this.socket = clientSocket;
 		this.instructor = instructor;
 	}
 
+	/**
+	 * Handle the client connection and, and begin the thread.
+	 */
 	public void run() {
 
 		PrintWriter out;
@@ -29,7 +46,7 @@ public class Server extends Thread {
 			out = new PrintWriter(socket.getOutputStream(), true);
 			String studentNumb = in.readLine();
 
-			System.out.println("Student " + studentNumb + " is connected.");
+			//System.out.println("Student " + studentNumb + " is connected.");
 			int studentNumber;
 			try {
 				studentNumber = Integer.parseInt(studentNumb);
@@ -54,11 +71,11 @@ public class Server extends Thread {
 					while ((choice = in.readLine()) != null) {
 						instructor.addStudentAnswer(studentNumber, choice);
 
-						System.out.println("Student "
-								+ studentNumb
-								+ " selected "
-								+ instructor.getAnswers().get(studentNumber)
-										.get(instructor.getCurrentQuestion()));
+					//	System.out.println("Student "
+						//		+ studentNumb
+							//	+ " selected "
+								//+ instructor.getAnswers().get(studentNumber)
+									//	.get(instructor.getCurrentQuestion()));
 					}
 
 				} else {

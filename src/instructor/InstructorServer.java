@@ -11,7 +11,7 @@ import java.util.Scanner;
  * This class establishes a server connection allowing many clients to connect
  * to it.
  * 
- * @author Skylerlayne
+ * @author cse23170
  *
  */
 public class InstructorServer {
@@ -20,8 +20,7 @@ public class InstructorServer {
 	private static int portNumb = 2080;
 	public static Instructor instructor;
 
-	static Thread two;
-	static Thread one;
+	private static Thread one;
 
 	/**
 	 * Connect client to server.
@@ -32,8 +31,6 @@ public class InstructorServer {
 	public void connect(Instructor inst) {
 		// Socket socket;
 		instructor = inst;
-
-		// System.out.print("Enter Command: ");
 
 		try {
 			@SuppressWarnings("resource")
@@ -48,15 +45,11 @@ public class InstructorServer {
 						while (!Mutex.open) {
 						}
 						if (Mutex.open) {
-							// System.out.println("Server's open 2");
 							try {
 								socket = serverSocket.accept();
 								new Server(socket, instructor).start();
 
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								// e.printStackTrace();
-								// System.out.println("Connection is closed");
 
 							}
 						} else {
@@ -132,7 +125,6 @@ public class InstructorServer {
 		try {
 			serverSocket.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -144,7 +136,6 @@ public class InstructorServer {
 		try {
 			serverSocket.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -165,9 +156,6 @@ public class InstructorServer {
 								+ stu.getValue().get(i) + " for question "
 								+ question);
 					}
-				} else {
-					// System.out.println(" hasn't answered yet"
-					// + " for question " + question);
 				}
 			}
 		}
